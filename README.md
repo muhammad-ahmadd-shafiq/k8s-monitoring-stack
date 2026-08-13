@@ -144,8 +144,8 @@ alertmanager:
 
 ## Screenshots
 
-![Grafana Dashboard](screenshots/grafana-dashboard.png)
-![Cluster Metrics](screenshots/cluster-metrics.png)
+![Grafana Dashboard](screenshots/Grafana.png)
+![Cluster Metrics](screenshots/Prometheus.png)
 
 ## Technologies Used
 
