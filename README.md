@@ -19,9 +19,19 @@ This repository provides a ready-to-deploy monitoring stack for Kubernetes clust
 - **Alertmanager** — alert routing (Slack / email / webhook)
 - **Node Exporter** — node-level system metrics
 - **kube-state-metrics** — Kubernetes object state metrics
-- Custom `values.yaml` overrides tuned for [cloud provider / local cluster — *fill in*]
 
-The goal is a one-command deployment that gives you cluster health, resource usage, and pod-level metrics out of the box, with dashboards and alert rules already wired up.
+Custom Helm values tuned for lightweight clusters running on k3s, giving you cluster health, resource usage, and pod-level metrics out of the box, with dashboards and alerting wired up from a single install.
+
+## Features
+
+- Cluster-wide monitoring
+- Resource utilization dashboards
+- Prometheus metrics collection
+- Grafana visualization
+- Alertmanager integration
+- Helm-based deployment
+- Persistent storage support
+- Production-ready architecture
 
 ## Architecture
 
@@ -44,9 +54,19 @@ The goal is a one-command deployment that gives you cluster health, resource usa
              └─────────────┘
 ```
 
+## Repository Structure
+
+```text
+k8s-monitoring-stack/
+├── values.yaml
+├── screenshots/
+├── LICENSE
+└── README.md
+```
+
 ## Prerequisites
 
-- A running Kubernetes cluster (v1.2x+) — tested on [AKS / k3s / minikube — *fill in*]
+- A running Kubernetes cluster — tested on **k3s**
 - [Helm 3](https://helm.sh/docs/intro/install/)
 - `kubectl` configured with cluster access
 - (Optional) [Ingress controller](https://kubernetes.github.io/ingress-nginx/) if exposing dashboards externally
@@ -69,6 +89,14 @@ kubectl create namespace monitoring
 helm install monitoring prometheus-community/kube-prometheus-stack \
   -n monitoring \
   -f values.yaml
+```
+
+## Verify Installation
+
+```bash
+kubectl get pods -n monitoring
+kubectl get svc -n monitoring
+helm list -n monitoring
 ```
 
 ## Accessing the Dashboards
@@ -116,17 +144,28 @@ alertmanager:
 
 ## Screenshots
 
-<!-- Reference the images already in the /screenshots folder, e.g.: -->
-<!-- ![Grafana Overview](screenshots/grafana-overview.png) -->
-<!-- ![Cluster Dashboard](screenshots/cluster-dashboard.png) -->
+![Grafana Dashboard](screenshots/grafana-dashboard.png)
+![Cluster Metrics](screenshots/cluster-metrics.png)
+
+## Technologies Used
+
+- Kubernetes
+- Helm
+- Prometheus
+- Grafana
+- Alertmanager
+- kube-state-metrics
+- Node Exporter
+- YAML
+- Git
 
 ## Roadmap
 
-- [ ] Add pre-built custom Grafana dashboards (JSON) to `dashboards/`
+- [ ] Add pre-built custom Grafana dashboards (JSON)
 - [ ] Add PrometheusRule CRDs for custom alerting thresholds
 - [ ] Ingress + TLS setup for external dashboard access
 - [ ] Loki integration for log aggregation
-- [ ] Terraform module for cluster + stack provisioning
+- [ ] Terraform module for cluster provisioning
 
 ## Uninstall
 
@@ -146,5 +185,8 @@ This project is licensed under the [MIT License](LICENSE).
 ## Author
 
 **Muhammad Ahmad Shafiq**
-DevOps / Cloud Engineering
-[GitHub](https://github.com/muhammad-ahmadd-shafiq) · [LinkedIn](#)
+
+Aspiring DevOps Engineer focused on Kubernetes, Cloud Infrastructure, CI/CD, Monitoring, and Automation.
+
+GitHub: [https://github.com/muhammad-ahmadd-shafiq](https://github.com/muhammad-ahmadd-shafiq)
+LinkedIn: [https://www.linkedin.com/in/muhammad-ahmad-11b220428](https://www.linkedin.com/in/muhammad-ahmad-11b220428)
